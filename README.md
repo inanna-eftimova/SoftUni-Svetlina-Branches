@@ -1,1 +1,0 @@
-# SoftUni-Svetlina-Branches
