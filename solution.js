@@ -14,18 +14,23 @@ function changeContent(className) {
     document.querySelector(`.${className}`).classList.remove('hidden');
 }
 
-document.querySelector('#new-reservation').addEventListener('click', (e) => cleanData(e));
+//
+document.querySelector('#search-form-button').addEventListener('click', (e) => searchFormData(e));
 
-function cleanData(e) {
-    changeContent('search-form-content');
-}
-
-document.querySelector('#search-back-btn').addEventListener('click', (e) => fillSearchForm(e));
-
-function fillSearchForm(e) {
+function searchFormData(e) {
     e.preventDefault();
-    changeContent('search-form-content');
-    document.querySelector('#check-in').value = reservation.startDate;
-    document.querySelector('#check-out').value = reservation.endDate;
-    document.querySelector('#people').value = reservation.guestsCount;
+    const data = e.target.parentElement;
+    const checkIn = data.querySelector('#check-in').value;
+    const checkOut = data.querySelector('#check-out').value;
+    const people = data.querySelector('#people').value;
+    if (checkIn != '' && checkOut != '' && people != '' &&
+        new Date(checkIn) <= new Date(checkOut)) {
+        reservation.startDate = checkIn;
+        reservation.endDate = checkOut;
+        reservation.guestsCount = people;
+        console.log(reservation);
+        changeContent('search-result-form-content');
+    }
 }
+
+document.querySelector('.thank-you-content').classList.add('hidden');
