@@ -62,6 +62,7 @@ body {
     position: relative;
     flex: 1;
     margin-top: 10rem;
+    background-origin: padding-box;
 
 }
 
